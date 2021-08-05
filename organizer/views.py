@@ -41,12 +41,12 @@ class organizerEventsView(View):
         events = Event.objects.all()
         return render(request,self.template_name, {'event': events})
 
-    def post(self,request):
+    def post(self,request,id):
         if request.method == "POST":
             if 'btn_delete' in request.POST:  
-                event_id = request.POST.get('event_id')
+                event_name = request.POST.get('event_name')
 
-        del_event = Event.objects.filter(event_id = event_id)
+        del_event = Event.objects.filter(event_name= event_name)
         del_event.delete()
 
         context ={
